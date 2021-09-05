@@ -1,0 +1,13 @@
+@import 'themes';
+
+@import '~@nebular/theme/styles/globals';
+
+@include nb-install() {
+  @include nb-theme-global();
+};
+app-nav {
+    grid-area: nav;
+    margin-left: 0.4rem;
+    background-color: #0b0e0f;
+  }
+  

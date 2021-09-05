@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="body">
+    <div class="header">
+        <div class="nav">
+
+
+            <button id="ul" (click)="ul()">אולטרפלסט</button>
+            <button id="mantin" (click)="mantin()">מנטין</button>
+            <button id="Gimor" (click)="Gimor()">חדר גימור</button>
+            <br>
+
+
+        </div>
+        <label>מכונות בעבודה-
+            <label style="background: rgb(9, 187, 104);color: rgb(36, 189, 112);">...</label></label><label>מכונות
+            בתקלה-
+            <label style=" background: red;color: red;">...</label>
+        </label>
+        <label class="none"> סיום יצור  
+            <i class="fa fa-flag" style="font-size:24px"></i>
+        </label>
+        <label  class="none">אישור מוצר ראשון
+            <i style="font-size:18px" class="material-icons">done</i>
+        </label>
+
+        <div style="text-align: center; direction: rtl;margin-top: 4%;">
+            <div  class="card1 class.my_class_2"  
+            [class.Count0]="x.MacheineSt == 0 && x.Quantity != 0"  [class.success]="x.MacheineSt == 3" [class.fault]="x.MacheineSt == 1"*ngFor="let x of m ; let i=index">
+                <div (click)="scroll(x.MacheineNumber)">
+                    <div>
+                        <h2>{{x.MacheineNumber}} </h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div style="text-align: center; direction: rtl;margin: auto; ">
+        <div attr.id="Location{{x.MacheineNumber}}" class="card" [class.my_class_10] = "x.MacheineSt == 0 && x.Quantity != 0" [class.my_class]="x.MacheineSt == 3" 
+        [class.my_class_1]="x.MacheineSt == 1"  *ngFor="let x of m ; let i=index">
+
+
+            <div *ngIf="Group==1 || Group==2" (click)="Details(x.MacheineNumber)">
+                <h3 ><i *ngIf="x.INJECTION>x.Quantity" class="fa fa-flag" style="font-size:24px"></i>
+                    מכונה {{x.MacheineNumber }}: {{x.INJECTION != 0 || x.Quantity != 0 ? (x.INJECTION/x.Quantity*100).toFixed(0) : 0}}%</h3>
+                    
+
+                <h4>שם מוצר: </h4> {{x.NameProduct}} 
+                <br><br>
+                <h4>כמות לייצור: </h4>{{(x.Quantity != 0 || x.NumMovlaot==x.NumMovlaot ? (x.NumMovlaot*x.Quantity).toLocaleString() : 0 )}}
+                <br><br>
+                <h4>הזרקות נדרש: </h4>{{x.Quantity == x.Quantity ? x.Quantity.toLocaleString() : 0 }} 
+                <br><br>
+                <h4>הזרקות בפועל: </h4>{{x.INJECTION.toLocaleString()}}<i *ngIf="x.ApproveFirstProduct==true"
+                style="font-size:18px" class="material-icons">done</i>
+                <br><br>
+                <h4>הזרקות נסיון:</h4>{{(x.Manul+x.OthrC==''?0:x.Manul+x.OthrC).toLocaleString()}} מחזור: {{(x.CalcCycale)  ? x.CalcCycale.slice(3,9) : 0}}
+                <h2 style="padding-bottom: auto; text-align: center;" *ngIf="x.MacheineSt == 3"> {{x.LastFaultBriefery}} </h2>
+            </div>
+
+            <div *ngIf="Group==3" (click)="Details(x.MacheineNumber)">
+                <h3>מכונה {{x.MacheineNumber }}</h3>
+
+                <h4>שם מוצר: </h4> {{x.NameProduct}}
+                <br><br>
+                <h4>נצילות: </h4>{{x.efficiency.toFixed(2)*100}}%
+                <br><br>
+                <h4>כמות עצירות: </h4>{{x.stopPerShift}}<i *ngIf="x.ApproveFirstProduct==true"
+                style="font-size:18px" class="material-icons">done</i>
+                <br><br>
+                <h4>דקות עצירה:</h4>{{x.minutePerShift}}
+                <h2 style="text-align: center;" *ngIf="x.MacheineSt == 3"> {{x.LastFaultBriefery}} </h2>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- <button (click)="topFunction()" id="myBtn" title="Go to top" style="display: block;width: 9%;
+height: min-content;">
+<i   class="fa fa-arrow-circle-up" style="font-size:36px"></i>
+
+</button> -->
+
+<div style="display: inline-block;" *ngIf="flageDetails==true">
+    <app-details [numberMachine]= "machineSelect" (dataToParent2)="ChangeFlageFalse($event)"></app-details>
+</div>
+

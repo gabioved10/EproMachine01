@@ -1,0 +1,24 @@
+<div class="header">
+    <label>מכונות בעבודה-  
+        <label  style="background: rgb(9, 187, 104);color: rgb(36, 189, 112);">...</label></label>
+        <label>מכונות בתקלה-
+            <label style=" background: red;color: red;">...</label>
+            </label>
+           
+    <button id="ul" (click)="ul()">אולטרפלסט</button>
+    <button id="mantin" (click)="mantin()">מנטין</button>
+    <button id="Gimor" (click)="Gimor()">חדר גימור</button>
+
+
+<div  style="text-align: center; direction: rtl; border-style: double ; height: 40%;margin-right: 7%; ">
+    <div   class="card1" [class.my_class]="x.MacheineSt == 3" [class.my_class_1]="x.MacheineSt == 1"  *ngFor="let x of m ; let i=index">
+        <div        (click)="scroll(x.MacheineNumber)">
+            <div>
+                <h3>{{x.MacheineNumber}}</h3>
+               
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
