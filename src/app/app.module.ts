@@ -8,8 +8,8 @@ import { MachinesComponent } from './machines/machines.component';
 import { NavComponent } from './nav/nav.component';
 import { DetailsComponent } from './details/details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbCardModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
+
+
 // import { AppRoutingComponent } from './app-routing/app-routing.component';
 
 @NgModule({
@@ -21,13 +21,11 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
   ],
   imports: [
     AppRoutingModule,
-    NbCardModule,
+  
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,
-    NbEvaIconsModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
