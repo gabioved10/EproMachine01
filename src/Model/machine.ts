@@ -55,5 +55,6 @@ export class machine {
     LastFaultBriefery:""
     CalcCycale:""
     Customer:""
-
+   
+  
 }

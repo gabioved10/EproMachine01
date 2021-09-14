@@ -5,14 +5,22 @@
     <i (click)="close()"class="fa fa-times-rectangle" style="font-size:30px; margin-right: 80%;"></i>
 
     <h2>מכונה: {{machine[0].MacheineNumber}}</h2>
-
     <h4>שם מוצר: </h4> {{machine[0].NameProduct}} 
     <br><br>
     <h4>שם לקוח: </h4> {{machine[0].Customer}} 
     <br><br>
-    <h4>חו"ג </h4> {{machine[0].Material}} 
+    <h4>חו"ג: </h4> {{machine[0].Material}} 
     <br><br>
-
+    <h4>לקוח מוצר הבא: </h4> {{machine[0].NextCustomerName}} 
+    <br><br>
+    <h4>מוצר הבא: </h4> {{machine[0].NextProduct}} 
+    <br><br>
+    <h4>תבנית הבאה: </h4> {{machine[0].NextMold}} 
+    <br><br>
+    <h4>כמות הבאה: </h4>  {{machine[0].NextRequiredQuantity.toLocaleString()}} 
+    <br><br>
+   
+   
 </div>
 
 <!-- 

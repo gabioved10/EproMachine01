@@ -13,27 +13,33 @@
 
 
         </div>
-        <label>מכונות בעבודה-
-            <label style="background: rgb(9, 187, 104);color: rgb(36, 189, 112);">...</label></label><label>מכונות
-            בתקלה-
-            <label style=" background: red;color: red;">...</label>
-        </label>
+        <label >מכונות בעבודה 
+            <label style="border-width: thin;border-color:black;border-style: solid;background: rgb(9, 187, 104);color: rgb(36, 189, 112);">...</label></label>&nbsp;&nbsp;
+            <label>מכונות
+            בתקלה
+            <label style="border-width: thin;border-color:black;border-style: solid; background: red;color: red;">...</label>
+        </label >&nbsp;&nbsp;
+        <label class="none">מכונות בסטאפ/משובצות 
+            <label style="border-width: thin;border-color:black;border-style: solid;;background: #f9ad0a;color: #f9ad0a;">...</label></label>&nbsp;
+            <label class="none"> מכונות ללא שיבוץ 
+                <label style="border-width: thin;border-color:black;border-style: solid;background: white;color: white;">...</label></label>&nbsp;
+        
         <label class="none"> סיום יצור  
             <i class="fa fa-flag" style="font-size:24px"></i>
-        </label>
+        </label>&nbsp;&nbsp;
         <label  class="none">אישור מוצר ראשון
             <i style="font-size:18px" class="material-icons">done</i>
         </label>
 
         <div style="text-align: center; direction: rtl;margin-top: 4%;">
-            <div  class="card1 class.my_class_2"  
-            [class.Count0]="x.MacheineSt == 0 && x.Quantity != 0"  [class.success]="x.MacheineSt == 3" [class.fault]="x.MacheineSt == 1"*ngFor="let x of m ; let i=index">
+            <div  class="card1"  
+            [class.Count0]="x.MacheineSt == 0 && x.Quantity != 0"  [class.success]="x.MacheineSt == 3" [class.fault]="x.MacheineSt == 1" [class.my_class_20]="x.MacheineSt == 0 && x.Quantity == 0"*ngFor="let x of m ; let i=index">
                 <div (click)="scroll(x.MacheineNumber)">
                     <div>
                         <h2>{{x.MacheineNumber}} </h2>
                     </div>
                 </div>
-
+                
             </div>
         </div>
     </div>
@@ -53,13 +59,15 @@
                 <h4>שם מוצר: </h4> {{x.NameProduct}} 
                 <br><br>
                 <h4>כמות לייצור: </h4>{{(x.Quantity != 0 || x.NumMovlaot==x.NumMovlaot ? (x.NumMovlaot*x.Quantity).toLocaleString() : 0 )}}
-                <br><br>
-                <h4>הזרקות נדרש: </h4>{{x.Quantity == x.Quantity ? x.Quantity.toLocaleString() : 0 }} 
-                <br><br>
-                <h4>הזרקות בפועל: </h4>{{x.INJECTION.toLocaleString()}}<i *ngIf="x.ApproveFirstProduct==true"
+                <i *ngIf="x.ApproveFirstProduct==true"
                 style="font-size:18px" class="material-icons">done</i>
                 <br><br>
-                <h4>הזרקות נסיון:</h4>{{(x.Manul+x.OthrC==''?0:x.Manul+x.OthrC).toLocaleString()}} מחזור: {{(x.CalcCycale)  ? x.CalcCycale.slice(3,9) : 0}}
+                <h4>הזרקות נדרש: </h4>{{x.Quantity == x.Quantity ? x.Quantity.toLocaleString() : 0 }}
+                <br><br>
+                <h4>הזרקות בפועל: </h4>{{x.INJECTION.toLocaleString()}}&nbsp;&nbsp;פולס: {{(x.PolseTime)  ? x.PolseTime.slice(0,5) : ''}}
+                <br><br>
+                <h4>הזרקות נסיון:</h4>{{(x.Manul+x.OthrC==''?0:x.Manul+x.OthrC).toLocaleString()}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; מחזור: {{(x.CalcCycale)  ? x.CalcCycale.slice(3,9) : 0}}
+                
                 <h2 style="padding-bottom: auto; text-align: center;" *ngIf="x.MacheineSt == 3"> {{x.LastFaultBriefery}} </h2>
             </div>
 

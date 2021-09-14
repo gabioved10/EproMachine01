@@ -1,18 +1,31 @@
 .Details{
-    width: 51%;
+    padding-right: 2%;
+    width: 25%;
    border-radius: 5%;
     background-color: white;
     margin: auto;
     position: absolute;
     margin-right: 20%;
-    text-align: center;
+    text-align: right;
     border: 8px solid #f9ad0a;
 }
 
+h3{
+    text-align: right;
+    // font-size: 130%;
+  }
+  h4 {
+    text-align: right;
+    display: inline;
+    color: black;
+    
+  }
 @media only screen and (max-width: 800px) {
     .Details{
-        width: 51%;
-        margin-top: -42%;
+        padding-right: 5%;
+        margin:4%;
+        width: 80%;
+        margin-top: -50%;
        
     } 
 }
