@@ -1,0 +1,26 @@
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajamachine[0]./libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="Details">
+    <i (click)="close()" class="fa fa-times-rectangle" style="font-size:30px; margin-right: 80%;"></i>
+    <h1 style="text-align: center;">מוצר הבא </h1>
+    <h2>מכונה: {{machine[0].MacheineNumber}}</h2>
+    <h4>פקע : </h4> {{machine[0].NextWorkorder}}
+    <br><br>
+    <h4>מוצר : </h4> {{machine[0].NextProduct}}
+    <br><br>
+    <h4>כמות : </h4> {{machine[0].NextRequiredQuantity.toLocaleString()}}
+    <br><br>
+    <h4>לקוח מוצר : </h4> {{machine[0].NextCustomerName}}
+    <br><br>
+    <h4>תבנית : </h4> {{machine[0].NextMold}}
+    <br><br>
+    <h4>מיקום תבנית : </h4> {{machine[0].moldLocation}}
+    <br><br>
+    <h4>תבנית תקינה : </h4> {{stringToBoolean(machine[0].NextMouldTakin)}}
+    <br><br>
+    
+
+
+</div>

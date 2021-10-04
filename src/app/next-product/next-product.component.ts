@@ -3,11 +3,14 @@ import { ApiService } from '../api.service';
 import { machine } from 'src/Model/machine';
 
 @Component({
-  selector: 'app-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  selector: 'app-next-product',
+  templateUrl: './next-product.component.html',
+  styleUrls: ['./next-product.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class NextProductComponent implements OnInit {
+
+
+
 
   @Output() dataToParent2 = new EventEmitter
   @Input() numberMachine;
@@ -32,23 +35,19 @@ export class DetailsComponent implements OnInit {
     document.documentElement.scrollTop = 0;
   }
   close() {
-   
     this.dataToParent2.emit(this.numberMachine);
   }
 
-  convertHMS(timeString, Qun) {
 
-    const arr = timeString.split(":");
+  stringToBoolean(str){
     
-    if (Qun > 1) {
-      const seconds = arr[1] * 60 + (+arr[2]) / 3600 * Qun;
-      return seconds.toFixed(1);
+    switch(str){
+      case true: case "yes": case "1":  return "כן";break;
+      case false: case "no": case "0": case null: return "לא";break;
+        
     }
-    else {
-      return 0;
+}
 
-    }
 
-  }
 
 }

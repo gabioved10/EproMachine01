@@ -41,7 +41,6 @@ export class machine {
     TimeChAuto: "30/12/1899 00:00:00"
     TimeChManul: "30/12/1899 00:00:00"
     UpdateBriefery: "False"
-    aaa: "System.Byte[]"
     efficiency: ""
     efficiencyLast: ""
     flagCycaleNotGoog: "False"
@@ -55,6 +54,6 @@ export class machine {
     LastFaultBriefery:""
     CalcCycale:""
     Customer:""
-   
-  
-}
+    InstructionApprove:""
+    NextMouldTakin:""
+     }

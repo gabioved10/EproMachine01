@@ -17,4 +17,8 @@ export class ApiService {
   GetAllEmployees(): Observable<machine[]> {
     return this.http.get<machine[]>(environment.urlmachine);
   }
+
+  
+
+  
 }

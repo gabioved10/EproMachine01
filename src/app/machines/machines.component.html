@@ -13,33 +13,38 @@
 
 
         </div>
-        <label >מכונות בעבודה 
-            <label style="border-width: thin;border-color:black;border-style: solid;background: rgb(9, 187, 104);color: rgb(36, 189, 112);">...</label></label>&nbsp;&nbsp;
-            <label>מכונות
+        <label>מכונות בעבודה
+            <label
+                style="border-width: thin;border-color:black;border-style: solid;background: rgb(9, 187, 104);color: rgb(36, 189, 112);">...</label></label>&nbsp;&nbsp;
+        <label>מכונות
             בתקלה
-            <label style="border-width: thin;border-color:black;border-style: solid; background: red;color: red;">...</label>
-        </label >&nbsp;&nbsp;
-        <label class="none">מכונות בסטאפ/משובצות 
-            <label style="border-width: thin;border-color:black;border-style: solid;;background: #f9ad0a;color: #f9ad0a;">...</label></label>&nbsp;
-            <label class="none"> מכונות ללא שיבוץ 
-                <label style="border-width: thin;border-color:black;border-style: solid;background: white;color: white;">...</label></label>&nbsp;
-        
-        <label class="none"> סיום יצור  
+            <label
+                style="border-width: thin;border-color:black;border-style: solid; background: red;color: red;">...</label>
+        </label>&nbsp;&nbsp;
+        <label class="none">מכונות בסטאפ/משובצות
+            <label
+                style="border-width: thin;border-color:black;border-style: solid;;background: #f9ad0a;color: #f9ad0a;">...</label></label>&nbsp;
+        <label class="none"> מכונות ללא שיבוץ
+            <label
+                style="border-width: thin;border-color:black;border-style: solid;background: white;color: white;">...</label></label>&nbsp;
+
+        <label class="none"> סיום יצור
             <i class="fa fa-flag" style="font-size:24px"></i>
         </label>&nbsp;&nbsp;
-        <label  class="none">אישור מוצר ראשון
+        <label class="none">אישור מוצר ראשון
             <i style="font-size:18px" class="material-icons">done</i>
         </label>
 
         <div style="text-align: center; direction: rtl;margin-top: 4%;">
-            <div  class="card1"  
-            [class.Count0]="x.MacheineSt == 0 && x.Quantity != 0"  [class.success]="x.MacheineSt == 3" [class.fault]="x.MacheineSt == 1" [class.my_class_20]="x.MacheineSt == 0 && x.Quantity == 0"*ngFor="let x of m ; let i=index">
+            <div class="card1" [class.Count0]="x.MacheineSt == 0 && x.Quantity != 0" [class.success]="x.MacheineSt == 3"
+                [class.fault]="x.MacheineSt == 1" [class.my_class_20]="x.MacheineSt == 0 && x.Quantity == 0"
+                *ngFor="let x of m ; let i=index">
                 <div (click)="scroll(x.MacheineNumber)">
                     <div>
                         <h2>{{x.MacheineNumber}} </h2>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -47,29 +52,68 @@
 
 
     <div style="text-align: center; direction: rtl;margin: auto; ">
-        <div attr.id="Location{{x.MacheineNumber}}" class="card" [class.my_class_10] = "x.MacheineSt == 0 && x.Quantity != 0" [class.my_class]="x.MacheineSt == 3" 
-        [class.my_class_1]="x.MacheineSt == 1"  *ngFor="let x of m ; let i=index">
+        <div attr.id="Location{{x.MacheineNumber}}" class="card"
+            [class.my_class_10]="x.MacheineSt == 0 && x.Quantity != 0" [class.my_class]="x.MacheineSt == 3"
+            [class.my_class_1]="x.MacheineSt == 1" *ngFor="let x of m ; let i=index">
 
 
-            <div *ngIf="Group==1 || Group==2" (click)="Details(x.MacheineNumber)">
-                <h3 ><i *ngIf="x.INJECTION>x.Quantity" class="fa fa-flag" style="font-size:24px"></i>
-                    מכונה {{x.MacheineNumber }}: {{x.INJECTION != 0 || x.Quantity != 0 ? (x.INJECTION/x.Quantity*100).toFixed(0) : 0}}%</h3>
-                    
+            <div *ngIf="Group==1 || Group==2">
 
-                <h4>שם מוצר: </h4> {{x.NameProduct}} 
+                <h3><i *ngIf="x.INJECTION>x.Quantity" class="fa fa-flag" style="font-size:24px"></i>
+                    מכונה {{x.MacheineNumber }}: {{x.INJECTION != 0 || x.Quantity != 0 ?
+                    (x.INJECTION/x.Quantity*100).toFixed(0) : 0}}%
+                    <i *ngIf="x.NextProduct!=0 && x.NextProduct!=null" (click)="nextproduct(x.MacheineNumber)"
+                        style="position: static;float: left; font-size:24px; padding-right:5%;" class="material-icons">more_vert</i>
+
+
+                </h3>
+
+
+                <h4>שם מוצר: </h4> {{x.NameProduct}}
                 <br><br>
-                <h4>כמות לייצור: </h4>{{(x.Quantity != 0 || x.NumMovlaot==x.NumMovlaot ? (x.NumMovlaot*x.Quantity).toLocaleString() : 0 )}}
-                <i *ngIf="x.ApproveFirstProduct==true"
-                style="font-size:18px" class="material-icons">done</i>
+                <h4>כמות לייצור: </h4>{{(x.Quantity != 0 || x.NumMovlaot==x.NumMovlaot ?
+                (x.NumMovlaot*x.Quantity).toLocaleString() : 0 )}}
+                <i *ngIf="x.ApproveFirstProduct==true" style="font-size:18px" class="material-icons">done</i>
                 <br><br>
                 <h4>הזרקות נדרש: </h4>{{x.Quantity == x.Quantity ? x.Quantity.toLocaleString() : 0 }}
+
+                <span *ngIf="x.NightWork==true">
+                    &nbsp;&nbsp; מ.לילה
+                </span>
                 <br><br>
-                <h4>הזרקות בפועל: </h4>{{x.INJECTION.toLocaleString()}}&nbsp;&nbsp;פולס: {{(x.PolseTime)  ? x.PolseTime.slice(0,5) : ''}}
+                <h4>הזרקות בפועל: </h4>{{x.INJECTION.toLocaleString()}}
+                <!-- x.InstructionApprove == true -->
+                <i *ngIf="flagDown == false && x.INJECTION>x.Quantity" (click)="DownInstruction(x.MacheineNumber,i)"
+                    style="position: static;float: left; border: 2px solid black ;font-size:24px; padding-right: 5%;" class="material-icons"><span
+                        class="material-icons-outlined">
+                        south
+                    </span></i>
+                <i *ngIf="flagUp == false && x.NextProduct!=0 && x.NextProduct!=null && x.Quantity ==0"
+                    (click)="UpInstruction(x.MacheineNumber,i)" style="position: static;float: left;border: 2px solid black ;font-size:24px; padding-right: 5%;"
+                    class="material-icons"><span class="material-icons-outlined">
+                        north
+                    </span></i>
+
+                <i  *ngIf="flagApprove == false && x.ApproveFirstProduct==false && x.Quantity !=0 && x.Manul+x.OthrC >1" (click)="ApproveProduct(x.MacheineNumber,i)"
+                    style="position: static;float: left; border: 2px solid black ; font-size:24px; padding-right: 5%;" class="material-icons"><span
+                        class="material-icons-outlined">
+                        thumb_up_off_alt
+                    </span></i>
                 <br><br>
-                <h4>הזרקות נסיון:</h4>{{(x.Manul+x.OthrC==''?0:x.Manul+x.OthrC).toLocaleString()}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; מחזור: {{(x.CalcCycale)  ? x.CalcCycale.slice(3,9) : 0}}
-                
-                <h2 style="padding-bottom: auto; text-align: center;" *ngIf="x.MacheineSt == 3"> {{x.LastFaultBriefery}} </h2>
+                <h4>הזרקות נסיון:</h4>
+                {{(x.Manul+x.OthrC==''?0:x.Manul+x.OthrC).toLocaleString()}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <i (click)="Details(x.MacheineNumber)" style="position: static; float: left; font-size:30px; padding-right: 5%;"
+                    class="material-icons">more</i>
+                <!-- <h2 style="text-align: center;" *ngIf="x.MacheineSt == 3"> {{x.LastFaultBriefery}} </h2> -->
+
+
+
+
+
             </div>
+
+            
+           
 
             <div *ngIf="Group==3" (click)="Details(x.MacheineNumber)">
                 <h3>מכונה {{x.MacheineNumber }}</h3>
@@ -78,16 +122,18 @@
                 <br><br>
                 <h4>נצילות: </h4>{{x.efficiency.toFixed(2)*100}}%
                 <br><br>
-                <h4>כמות עצירות: </h4>{{x.stopPerShift}}<i *ngIf="x.ApproveFirstProduct==true"
-                style="font-size:18px" class="material-icons">done</i>
+                <h4>כמות עצירות: </h4>{{x.stopPerShift}}<i *ngIf="x.ApproveFirstProduct==true" style="font-size:18px"
+                    class="material-icons">done</i>
                 <br><br>
                 <h4>דקות עצירה:</h4>{{x.minutePerShift}}
                 <h2 style="text-align: center;" *ngIf="x.MacheineSt == 3"> {{x.LastFaultBriefery}} </h2>
 
             </div>
+            
         </div>
+        <button id = BT (click)="topFunction()" > TOP</button>
     </div>
-
+    
 </div>
 <!-- <button (click)="topFunction()" id="myBtn" title="Go to top" style="display: block;width: 9%;
 height: min-content;">
@@ -95,7 +141,10 @@ height: min-content;">
 
 </button> -->
 
-<div style="display: inline-block;" *ngIf="flageDetails==true">
-    <app-details [numberMachine]= "machineSelect" (dataToParent2)="ChangeFlageFalse($event)"></app-details>
+<div style="display: inline-block; top: 20px;" *ngIf="flageDetails==true">
+    <app-details [numberMachine]="machineSelect" (dataToParent2)="ChangeFlageFalse(machineSelect)"></app-details>
 </div>
 
+<div style="display: inline-block; top: 20px;" *ngIf="flagnextproduct==true">
+    <app-next-product [numberMachine]="machineSelect" (dataToParent2)="ChangeFlageFalse(machineSelect)"></app-next-product>
+</div>

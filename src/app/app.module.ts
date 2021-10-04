@@ -8,6 +8,7 @@ import { MachinesComponent } from './machines/machines.component';
 import { NavComponent } from './nav/nav.component';
 import { DetailsComponent } from './details/details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NextProductComponent } from './next-product/next-product.component';
 
 
 // import { AppRoutingComponent } from './app-routing/app-routing.component';
@@ -18,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MachinesComponent,
     NavComponent,
     DetailsComponent,
+    NextProductComponent,
   ],
   imports: [
     AppRoutingModule,
