@@ -41,7 +41,8 @@ export class DetailsComponent implements OnInit {
     const arr = timeString.split(":");
     
     if (Qun > 1) {
-      const seconds = arr[1] * 60 + (+arr[2]) / 3600 * Qun;
+    
+      const seconds = (arr[1] * 60 + (+arr[2])) / 3600 * Qun;
       return seconds.toFixed(1);
     }
     else {

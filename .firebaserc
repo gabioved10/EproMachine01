@@ -1,5 +1,21 @@
 {
   "projects": {
     "default": "epro-f862b"
+  },
+  "targets": {
+    "cupsstore10": {
+      "hosting": {
+        "EproMachine": [
+          "cupsstore10"
+        ]
+      }
+    },
+    "epro-f862b": {
+      "hosting": {
+        "EproMachine": [
+          "epro-f862b"
+        ]
+      }
+    }
   }
 }

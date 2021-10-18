@@ -23,6 +23,7 @@ export class MachinesComponent implements OnInit {
   constructor(private ser: ApiService, private http: HttpClient) { }
 
   ngOnInit(): void {
+    
     this.ul();
 
   }
@@ -34,7 +35,7 @@ export class MachinesComponent implements OnInit {
       document.getElementById("mantin").style.backgroundColor = "#e2a758fa";
       document.getElementById("Gimor").style.backgroundColor = "rgb(253, 175, 7)";
       this.m = s
-      this.m = this.m.filter(a => a.PortGroup == "3" && a.MacheineNumber != 0);
+      this.m = this.m.filter(a => a.PortGroup == "3" && a.MacheineNumber != 0 && a.PortStatus != 0);
       this.sortResults('MacheineNumber', true);
     })
 
@@ -47,7 +48,9 @@ export class MachinesComponent implements OnInit {
   ul() {
     this.ser.GetAllEmployees().subscribe(s => {
       this.m = s
-      this.m = this.m.filter(a => a.PortGroup == "1" && a.MacheineNumber != 0);
+      this.m = this.m.filter(a => a.PortGroup == "1" && a.MacheineNumber != 0 && a.PortStatus != 0);
+     
+      console.log(this.m)
       this.sortResults('MacheineNumber', true);
       document.getElementById("ul").style.backgroundColor = "rgb(253, 175, 7)";
       document.getElementById("mantin").style.backgroundColor = "#e2a758fa";
@@ -62,7 +65,7 @@ export class MachinesComponent implements OnInit {
       document.getElementById("mantin").style.backgroundColor = "rgb(253, 175, 7)";
       document.getElementById("Gimor").style.backgroundColor = "#e2a758fa";
       this.m = s
-      this.m = this.m.filter(a => a.PortGroup == "2" && a.MacheineNumber != 0);
+      this.m = this.m.filter(a => a.PortGroup == "2" && a.MacheineNumber != 0 && a.PortStatus != 0);
       this.sortResults('MacheineNumber', true);
 
     })

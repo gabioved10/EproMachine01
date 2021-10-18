@@ -41,7 +41,8 @@
                 *ngFor="let x of m ; let i=index">
                 <div (click)="scroll(x.MacheineNumber)">
                     <div>
-                        <h2>{{x.MacheineNumber}} </h2>
+                        <h2>{{x.MacheineNumber}} <span style="display: inline-block;" *ngIf="flagApprove == false && x.ApproveFirstProduct==false && x.Quantity !=0 && x.Manul+x.OthrC >1">*</span> </h2>
+                        
                     </div>
                 </div>
 
@@ -74,8 +75,25 @@
                 <h4>כמות לייצור: </h4>{{(x.Quantity != 0 || x.NumMovlaot==x.NumMovlaot ?
                 (x.NumMovlaot*x.Quantity).toLocaleString() : 0 )}}
                 <i *ngIf="x.ApproveFirstProduct==true" style="font-size:18px" class="material-icons">done</i>
+                <i *ngIf="flagDown == false && x.Quantity !=0" (click)="DownInstruction(x.MacheineNumber,i)"
+                    style="padding-left: 4px;margin-left: 5px;position: static;float: left; border: 2px solid black ;font-size:24px; padding-right: 5%;" class="material-icons"><span
+                        class="material-icons-outlined">
+                        south
+                    </span></i>
+                <i *ngIf="flagUp == false && x.NextProduct!=0 && x.NextProduct!=null && x.Quantity ==0"
+                    (click)="UpInstruction(x.MacheineNumber,i)" style="padding-left: 4px;margin-left: 5px;position: static;float: left;border: 2px solid black ;font-size:24px; padding-right: 5%;"
+                    class="material-icons"><span class="material-icons-outlined">
+                        north
+                    </span></i>
+
+               
                 <br><br>
                 <h4>הזרקות נדרש: </h4>{{x.Quantity == x.Quantity ? x.Quantity.toLocaleString() : 0 }}
+                <i  *ngIf="flagApprove == false && x.ApproveFirstProduct==false && x.Quantity !=0 && x.Manul+x.OthrC >1" (click)="ApproveProduct(x.MacheineNumber,i)"
+                    style="position: static;float: left;padding-left: 4px;margin-left: 5px; border: 2px solid black ; font-size:24px; padding-right: 5%;" class="material-icons"><span
+                        class="material-icons-outlined">
+                        thumb_up_off_alt
+                    </span></i>
 
                 <span *ngIf="x.NightWork==true">
                     &nbsp;&nbsp; מ.לילה
@@ -83,22 +101,7 @@
                 <br><br>
                 <h4>הזרקות בפועל: </h4>{{x.INJECTION.toLocaleString()}}
                 <!-- x.InstructionApprove == true -->
-                <i *ngIf="flagDown == false && x.INJECTION>x.Quantity" (click)="DownInstruction(x.MacheineNumber,i)"
-                    style="position: static;float: left; border: 2px solid black ;font-size:24px; padding-right: 5%;" class="material-icons"><span
-                        class="material-icons-outlined">
-                        south
-                    </span></i>
-                <i *ngIf="flagUp == false && x.NextProduct!=0 && x.NextProduct!=null && x.Quantity ==0"
-                    (click)="UpInstruction(x.MacheineNumber,i)" style="position: static;float: left;border: 2px solid black ;font-size:24px; padding-right: 5%;"
-                    class="material-icons"><span class="material-icons-outlined">
-                        north
-                    </span></i>
-
-                <i  *ngIf="flagApprove == false && x.ApproveFirstProduct==false && x.Quantity !=0 && x.Manul+x.OthrC >1" (click)="ApproveProduct(x.MacheineNumber,i)"
-                    style="position: static;float: left; border: 2px solid black ; font-size:24px; padding-right: 5%;" class="material-icons"><span
-                        class="material-icons-outlined">
-                        thumb_up_off_alt
-                    </span></i>
+                
                 <br><br>
                 <h4>הזרקות נסיון:</h4>
                 {{(x.Manul+x.OthrC==''?0:x.Manul+x.OthrC).toLocaleString()}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

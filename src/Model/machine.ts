@@ -56,4 +56,5 @@ export class machine {
     Customer:""
     InstructionApprove:""
     NextMouldTakin:""
+   
      }

@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NextProductComponent } from './next-product/next-product.component';
 
 
+
+
+
 // import { AppRoutingComponent } from './app-routing/app-routing.component';
 
 @NgModule({
@@ -20,10 +23,14 @@ import { NextProductComponent } from './next-product/next-product.component';
     NavComponent,
     DetailsComponent,
     NextProductComponent,
+    
+  
   ],
   imports: [
     AppRoutingModule,
   
+ 
+    
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
