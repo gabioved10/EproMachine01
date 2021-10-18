@@ -9,6 +9,7 @@
             <button id="ul" (click)="ul()">אולטרפלסט</button>
             <button id="mantin" (click)="mantin()">מנטין</button>
             <button id="Gimor" (click)="Gimor()">חדר גימור</button>
+            <button (click) = "callPatchData(8)"> לחץ</button>
             <br>
 
 
@@ -74,13 +75,13 @@
                 <br><br>
                 <h4>כמות לייצור: </h4>{{(x.Quantity != 0 || x.NumMovlaot==x.NumMovlaot ?
                 (x.NumMovlaot*x.Quantity).toLocaleString() : 0 )}}
-                <i *ngIf="x.ApproveFirstProduct==true" style="font-size:18px" class="material-icons">done</i>
-                <i *ngIf="flagDown == false && x.Quantity !=0" (click)="DownInstruction(x.MacheineNumber,i)"
+                <i *ngIf="x.ApproveFirstProduct==true " style="font-size:18px" class="material-icons">done</i>
+                <i *ngIf="x.Quantity !=0 && x.AppFlag ==null" (click)="DownInstruction(x.MacheineNumber,i)"
                     style="padding-left: 4px;margin-left: 5px;position: static;float: left; border: 2px solid black ;font-size:24px; padding-right: 5%;" class="material-icons"><span
                         class="material-icons-outlined">
                         south
                     </span></i>
-                <i *ngIf="flagUp == false && x.NextProduct!=0 && x.NextProduct!=null && x.Quantity ==0"
+                <i *ngIf="x.AppFlag ==null && x.NextProduct!=0 && x.NextProduct!=null && x.Quantity ==0"
                     (click)="UpInstruction(x.MacheineNumber,i)" style="padding-left: 4px;margin-left: 5px;position: static;float: left;border: 2px solid black ;font-size:24px; padding-right: 5%;"
                     class="material-icons"><span class="material-icons-outlined">
                         north
@@ -89,7 +90,7 @@
                
                 <br><br>
                 <h4>הזרקות נדרש: </h4>{{x.Quantity == x.Quantity ? x.Quantity.toLocaleString() : 0 }}
-                <i  *ngIf="flagApprove == false && x.ApproveFirstProduct==false && x.Quantity !=0 && x.Manul+x.OthrC >1" (click)="ApproveProduct(x.MacheineNumber,i)"
+                <i  *ngIf="x.AppFlag ==null && x.ApproveFirstProduct==false && x.Quantity !=0 && x.Manul+x.OthrC >1" (click)="ApproveProduct(x.MacheineNumber,i)"
                     style="position: static;float: left;padding-left: 4px;margin-left: 5px; border: 2px solid black ; font-size:24px; padding-right: 5%;" class="material-icons"><span
                         class="material-icons-outlined">
                         thumb_up_off_alt

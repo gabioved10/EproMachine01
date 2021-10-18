@@ -56,5 +56,6 @@ export class machine {
     Customer:""
     InstructionApprove:""
     NextMouldTakin:""
+    AppFlag:"0"
    
      }

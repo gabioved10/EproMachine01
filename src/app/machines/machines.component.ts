@@ -12,11 +12,9 @@ import { ApiService } from '../api.service';
 })
 export class MachinesComponent implements OnInit {
   m: machine[] = [];
+  mAll:machine[]=[];
   flageDetails = false;
   flagnextproduct = false;
-  flagApprove = false;
-  flagUp = false;
-  flagDown = false;
   Group: number = 1;
   machineSelect: number
   postId;
@@ -48,9 +46,10 @@ export class MachinesComponent implements OnInit {
   ul() {
     this.ser.GetAllEmployees().subscribe(s => {
       this.m = s
+      this.mAll=s
       this.m = this.m.filter(a => a.PortGroup == "1" && a.MacheineNumber != 0 && a.PortStatus != 0);
      
-      console.log(this.m)
+      // console.log(this.m)
       this.sortResults('MacheineNumber', true);
       document.getElementById("ul").style.backgroundColor = "rgb(253, 175, 7)";
       document.getElementById("mantin").style.backgroundColor = "#e2a758fa";
@@ -135,10 +134,16 @@ export class MachinesComponent implements OnInit {
   DownInstruction(nummachine,i) {
 
     let person = prompt("הכנס סיסמא :");
+    
     if (person == "2018") {
       let today = new Date();
       const headers = { 'Content-Type': 'application/json' };
-      this.flagDown=true;
+
+      
+        
+     
+      
+      this.callPatchData(this.GetIdNumber(nummachine));
       const body = {
         "Machine": nummachine,
         "TriggerDate": today.getFullYear() + '-' + ("0" + (today.getMonth() + 1)).slice(-2) + '-' + ("0" + today.getDate()).slice(-2),
@@ -153,6 +158,7 @@ export class MachinesComponent implements OnInit {
       this.http.post<any>('https://epro-f862b-default-rtdb.firebaseio.com/DownInstruction.json', body, { headers }).subscribe(data => {
         this.postId = data.id;
       });
+     
     }
 
     else {
@@ -168,7 +174,8 @@ export class MachinesComponent implements OnInit {
 
       let today = new Date();
       const headers = { 'Content-Type': 'application/json' };
-      this.flagUp=true;
+      
+      this.callPatchData(this.GetIdNumber(nummachine));
       const body = {
         "Machine": nummachine,
         "TriggerDate": today.getFullYear() + '-' + ("0" + (today.getMonth() + 1)).slice(-2) + '-' + ("0" + today.getDate()).slice(-2),
@@ -183,6 +190,8 @@ export class MachinesComponent implements OnInit {
       this.http.post<any>('https://epro-f862b-default-rtdb.firebaseio.com/UpInstruction.json', body, { headers }).subscribe(data => {
         this.postId = data.id;
       });
+
+      
     }
 
     else {
@@ -191,13 +200,16 @@ export class MachinesComponent implements OnInit {
 
   }
 
+  
+
   ApproveProduct(nummachine,i) {
 
     let person = prompt("הכנס סיסמא :");
     if (person == "2018") {
 
       let today = new Date();
-      this.flagApprove=true;
+      debugger;
+      this.callPatchData(this.GetIdNumber(nummachine));
       const headers = { 'Content-Type': 'application/json' };
       const body = {
         "Machine": nummachine,
@@ -223,5 +235,21 @@ export class MachinesComponent implements OnInit {
 
 
   }
+
+
+  callPatchData(i:number){
+   
+    this.ser.PatchData(i).subscribe(() =>{this.ul();})
+  }
+
+
+  GetIdNumber(nummachine)
+  {for (let index = 0; index < this.mAll.length; index++) {
+    if(this.mAll[index].MacheineNumber==nummachine){
+     return index;
+    }
+  
+  }
+  return null;}
 
 }
